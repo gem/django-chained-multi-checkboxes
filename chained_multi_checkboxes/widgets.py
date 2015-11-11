@@ -4,7 +4,10 @@ from django.forms import CheckboxSelectMultiple
 from django.forms.widgets import CheckboxInput
 from django.utils.encoding import force_text
 from django.utils.html import format_html
+from django.contrib.admin.templatetags.admin_static import static
 from itertools import chain
+from django.conf import settings
+
 
 class ChainedCheckboxSelectMultiple(CheckboxSelectMultiple):
     def __init__(self, parent_field=None, order_fields=None, item_index=None, *args, **kwargs):
@@ -16,7 +19,10 @@ class ChainedCheckboxSelectMultiple(CheckboxSelectMultiple):
         super(CheckboxSelectMultiple, self).__init__(*args, **kwargs)
 
     class Media:
-        js = ['admin/js/jquery.min.js', 'admin/js/jquery.init.js', 'js/chained-multi-checkboxes.js']
+        extra = '' if settings.DEBUG else '.min'
+        js = [static('admin/js/jquery%s.js' % extra),
+              static('admin/js/jquery.init.js'),
+              static('js/chained-multi-checkboxes.js')]
 
     def render(self, name, value, attrs=None, choices=()):
         if value is None: value = []
