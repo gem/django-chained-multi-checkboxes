@@ -171,7 +171,7 @@
             $.fn.setChainedMultiCheckboxesCounter(this);
         };
 
-        $('.chained-checkbox-parent-field').live('change', function(e) {
+        $(document).on('change', 'select.chained-checkbox-parent-field', function(e) {
             $(this).loadChainedMultiCheckboxes(false);
         });
     });
