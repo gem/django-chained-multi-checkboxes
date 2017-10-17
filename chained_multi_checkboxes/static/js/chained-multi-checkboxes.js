@@ -131,10 +131,12 @@
                             if (cb.length != 1)
                                 break;
                             // cb.removeAttr('checked');
+                            // Changed attr with prop for the version of jequery > 1.6
                             cb.prop('checked', false);
                         }
 
                         // item.attr('checked','checked');
+                        // Changed attr with prop for the version of jequery > 1.6
                         item.prop('checked', true);
                     }
                 }
