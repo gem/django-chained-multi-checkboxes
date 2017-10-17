@@ -130,10 +130,12 @@
                             var cb = $('#'+chained_id+'_'+cb_idx);
                             if (cb.length != 1)
                                 break;
-                            cb.removeAttr('checked');
+                            // cb.removeAttr('checked');
+                            cb.prop('checked', false);
                         }
 
-                        item.attr('checked','checked');
+                        // item.attr('checked','checked');
+                        item.prop('checked', true);
                     }
                 }
                 else { // if hiddengroup isn't selected all hiddengroups items must be deselected
