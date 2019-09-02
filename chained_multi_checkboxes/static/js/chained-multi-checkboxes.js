@@ -130,10 +130,14 @@
                             var cb = $('#'+chained_id+'_'+cb_idx);
                             if (cb.length != 1)
                                 break;
-                            cb.removeAttr('checked');
+                            // cb.removeAttr('checked');
+                            // Changed attr with prop for the version of jequery > 1.6
+                            cb.prop('checked', false);
                         }
 
-                        item.attr('checked','checked');
+                        // item.attr('checked','checked');
+                        // Changed attr with prop for the version of jequery > 1.6
+                        item.prop('checked', true);
                     }
                 }
                 else { // if hiddengroup isn't selected all hiddengroups items must be deselected
@@ -171,7 +175,7 @@
             $.fn.setChainedMultiCheckboxesCounter(this);
         };
 
-        $('.chained-checkbox-parent-field').live('change', function(e) {
+        $(document).on('change', 'select.chained-checkbox-parent-field', function(e) {
             $(this).loadChainedMultiCheckboxes(false);
         });
     });
